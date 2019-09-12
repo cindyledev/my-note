@@ -5,7 +5,8 @@
   </head>
 
   <body>
-    <h1>Hello</h1>
+    <h1>Welcome to my notepad!</h1>
+    <div id="note" contenteditable></div>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
     <script>
@@ -14,27 +15,11 @@
       window.addEventListener("DOMContentLoaded", event => {
         console.log("DOM fully loaded and parsed");
         fs.readFile("/note", "utf8", (err, data) => {
-          if (err) {
-            console.log("Welcome to my notepad!");
-          }
-          if (data) {
-            console.log(data);
-          }
+          document.querySelector("#note").innerHTML = err
+            ? "Start type notes here"
+            : data;
         });
       });
-
-      function saveNote() {
-        newNote = document.querySelector("#note").innerHTML;
-        fs.writeFile("/note", newNote, function(err) {
-          if (err) {
-            throw err;
-          } else {
-            console.log(newNote + " saved");
-          }
-        });
-      }
     </script>
-
-    <div id="note" contenteditable></div>
   </body>
 </html>
