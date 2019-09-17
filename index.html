@@ -13,18 +13,21 @@
   <body>
     <div class="form-group">
       <h1>Welcome to my notepad!</h1>
-			<textarea 
-				class="form-control" 
-				rows="6" 
-				id="note">
-			</textarea>
+      <textarea 
+        class="form-control" 
+	rows="6" 
+	id="note"
+	aria-label="Notes input"
+	aria-describedby="button-addon2"
+	contenteditable>
+      </textarea>
       <button
       	class="btn btn-outline-secondary"
         type="button"
         id="button-addon2"
         onclick="saveNote()">
         Save
-    	</button>
+      </button>
     </div>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
