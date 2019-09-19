@@ -13,7 +13,11 @@
   <body>
     <div class="form-group">
       <h1>Welcome to my notepad!</h1>
+      <p>Ctrl+s to save, Ctrl+c to delete</p>
+
+      <div id="note" contenteditable></div>
       <div class="input-group mb-3">
+        <!--
         <input
           id="note"
           type="text"
@@ -22,6 +26,7 @@
           aria-describedby="button-addon2"
           contenteditable
         />
+        -->
         <div class="input-group-append">
           <button
             class="btn btn-outline-secondary"
@@ -36,8 +41,32 @@
     </div>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
     <script>
       const fs = new Filer.FileSystem();
+
+      hotkeys.filter = function(event){
+
+        var tagName = (event.target || event.srcElement).tagName;
+        return !(tagName.isContentEditable);
+
+
+      }
+
+      //saves what is in the notepad
+hotkeys('ctrl+s', function() {
+                fs.writeFile('/note', document.querySelector('#note').innerHTML, err => {
+                if (err) throw err;
+                else alert('Note saved');
+                });
+             }); 
+
+            // clears what is in notepad
+hotkeys('ctrl+c', function(){
+    
+    document.querySelector('#note').innerHTML= "Type on this line";
+    alert("note cleared!");
+})
 
       window.addEventListener("DOMContentLoaded", event => {
         console.log("DOM fully loaded and parsed");
@@ -55,6 +84,10 @@
           }
         );
       }
+
+      
+
+
     </script>
   </body>
 </html>
