@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8"/>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -42,13 +43,13 @@
       window.addEventListener("DOMContentLoaded", event => {
         console.log("DOM fully loaded and parsed");
         fs.readFile("/note", "utf8", (err, data) => {
-          document.querySelector("#note").innerHTML = err ? "First note" : data;
+          document.getElementById("note").value = err ? "First note" : data;
         });
       });
       function saveNote() {
         fs.writeFile(
           "/note",
-          document.querySelector("#note").innerHTML,
+          document.getElementById("note").value,
           err => {
             if (err) throw err;
             else console.log("Note saved");
