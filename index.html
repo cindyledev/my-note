@@ -14,26 +14,21 @@
   <body>
     <div class="form-group">
       <h1>Welcome to my notepad!</h1>
-      <div class="input-group mb-3">
-        <input
-          id="note"
-          type="text"
-          class="form-control"
-          aria-label="Notes input"
-          aria-describedby="button-addon2"
-          contenteditable
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-            onclick="saveNote()"
-          >
-            Save
-          </button>
-        </div>
-      </div>
+      <textarea 
+        class="form-control" 
+	rows="6" 
+	id="note"
+	aria-label="Notes input"
+	aria-describedby="button-addon2"
+	contenteditable>
+      </textarea>
+      <button
+      	class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+        onclick="saveNote()">
+        Save
+      </button>
     </div>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
