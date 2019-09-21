@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -12,21 +12,23 @@
   </head>
 
   <body>
-    <div class="form-group">
+    <div class="container">
       <h1>Welcome to my notepad!</h1>
-      <textarea 
-        class="form-control" 
-	rows="6" 
-	id="note"
-	aria-label="Notes input"
-	aria-describedby="button-addon2"
-	contenteditable>
+      <textarea
+        class="form-control"
+        rows="6"
+        id="note"
+        aria-label="Notes input"
+        aria-describedby="button-addon2"
+        contenteditable
+      >
       </textarea>
       <button
-      	class="btn btn-outline-secondary"
+        class="btn btn-outline-secondary"
         type="button"
         id="button-addon2"
-        onclick="saveNote()">
+        onclick="saveNote()"
+      >
         Save
       </button>
     </div>
@@ -42,14 +44,10 @@
         });
       });
       function saveNote() {
-        fs.writeFile(
-          "/note",
-          document.getElementById("note").value,
-          err => {
-            if (err) throw err;
-            else console.log("Note saved");
-          }
-        );
+        fs.writeFile("/note", document.getElementById("note").value, err => {
+          if (err) throw err;
+          else console.log("Note saved");
+        });
       }
     </script>
   </body>
