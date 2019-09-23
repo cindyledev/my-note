@@ -9,6 +9,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
     <title>My Notes</title>
   </head>
 
@@ -35,19 +36,30 @@
     </div>
 
     <script src="https://unpkg.com/filer/dist/filer.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
     <script>
       const fs = new Filer.FileSystem();
+
+      // Configure Quill
+      var option = {
+        placeholder: 'First note',
+        theme: 'snow'
+      };
+
+      // Initialize Quill
+      var editor = new Quill('#note', option);
 
       window.addEventListener("DOMContentLoaded", event => {
         console.log("DOM fully loaded and parsed");
         fs.readFile("/note", "utf8", (err, data) => {
-          document.getElementById("note").value = err ? "First note" : data;
+          document.getElementById("note").value = err ? "" : data;
         });
       });
+
       function saveNote() {
         fs.writeFile("/note", document.getElementById("note").value, err => {
           if (err) throw err;
-          else console.log("Note saved");
+          else console.log("Note saved" + document.getElementById("note").value);
         });
       }
     </script>
