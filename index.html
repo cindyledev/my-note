@@ -44,6 +44,12 @@
           document.getElementById("note").value = err ? "First note" : data;
         });
       });
+
+        // Set a timer to save work every 10 seconds (10000 miliseconds)
+        window.setInterval(function(){
+            saveNote()
+        },10000)
+
       function saveNote() {
         fs.writeFile("/note", document.getElementById("note").value, err => {
           if (err) throw err;
